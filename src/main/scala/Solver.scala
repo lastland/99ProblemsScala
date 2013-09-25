@@ -39,4 +39,13 @@ object Solver {
     case Nil => res
     case h :: t => reverse(t, h :: res)
   }
+
+  // Problem 6
+  def isPalindrome[A](lst: List[A]): Boolean = lst == reverse(lst) // Yes. I'm lazy.
+
+  // Problem 7
+  def flatten(lst: List[Any]): List[Any] = lst flatMap { 
+    case l: List[_] => flatten(l)
+    case elt => List(elt)
+  }
 }

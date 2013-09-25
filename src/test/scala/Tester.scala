@@ -53,4 +53,19 @@ class SolverTest extends Suite {
     assert(reverse(List(1)) === List(1))
     assert(reverse(Nil) === Nil)
   }
+
+  // Problem 6
+  def testIsPalindrome = { 
+    assert(isPalindrome(List(1, 2, 3, 2, 1)) === true)
+    assert(isPalindrome(List(1, 1, 2, 3, 5)) === false) 
+    assert(isPalindrome(List(1)) === true) 
+    assert(isPalindrome(Nil) === true) 
+  }
+
+  // Problem 7
+  def testFlatten = { 
+    assert(flatten(List(List(1, 1), 2, List(3, List(5, 8)))) == List(1, 1, 2, 3, 5, 8))
+    assert(flatten(List(1, 2, 3, 4)) === List(1, 2, 3, 4))
+    assert(flatten(Nil) === Nil)
+  }
 }
