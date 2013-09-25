@@ -11,7 +11,6 @@ object Solver {
   // Problem 2
   def penultimate[A](lst: List[A]): A = lst match { 
     case h :: _ :: Nil => h
-    case _ :: Nil => throw new NoSuchElementException
     case Nil => throw new NoSuchElementException
     case _ :: t => penultimate(t)
   }
