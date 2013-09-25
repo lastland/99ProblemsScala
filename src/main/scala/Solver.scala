@@ -23,4 +23,20 @@ object Solver {
     case (n, _ :: t) if n < 0 => throw new NoSuchElementException
     case (_, _ :: t) => nth(n - 1, t)
   }
+
+  // Problem 4
+  def length[A](lst: List[A]): Int = length(lst, 0)
+
+  private def length[A](lst: List[A], res: Int): Int = lst match { 
+    case Nil => res
+    case _ :: t => length(t, res + 1)
+  }
+
+  // Problem 5
+  def reverse[A](lst: List[A]): List[A] = reverse(lst, Nil)
+
+  def reverse[A](lst: List[A], res: List[A]): List[A] = lst match { 
+    case Nil => res
+    case h :: t => reverse(t, h :: res)
+  }
 }

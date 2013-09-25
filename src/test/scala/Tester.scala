@@ -39,4 +39,18 @@ class SolverTest extends Suite {
       nth(1, List(1))
     }
   }
+
+  // Problem 4
+  def testLength = { 
+    assert(length(List(1, 1, 2, 3, 5, 8)) === 6)
+    assert(length(List(1)) === 1) 
+    assert(length(Nil) === 0)
+  }
+
+  // Problem 5
+  def testReverse = { 
+    assert(reverse(List(1, 1, 2, 3, 5, 8)) === List(8, 5, 3, 2, 1, 1))
+    assert(reverse(List(1)) === List(1))
+    assert(reverse(Nil) === Nil)
+  }
 }
