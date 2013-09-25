@@ -68,4 +68,11 @@ class SolverTest extends Suite {
     assert(flatten(List(1, 2, 3, 4)) === List(1, 2, 3, 4))
     assert(flatten(Nil) === Nil)
   }
+
+  // Problem 8
+  def testCompress = { 
+    assert(compress(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) === List('a, 'b, 'c, 'a, 'd, 'e))
+    assert(compress(List('a, 'b, 'c, 'a, 'd, 'e)) === List('a, 'b, 'c, 'a, 'd, 'e))
+    assert(compress(Nil) == Nil)
+  }
 }

@@ -47,4 +47,14 @@ object Solver {
     case l: List[_] => flatten(l)
     case elt => List(elt)
   }
+
+  // Problem 8
+  def compress[A](lst: List[A]): List[A] = reverse(compress(lst, Nil))
+
+  def compress[A](lst: List[A], res: List[A]): List[A] = lst match {
+    case x :: y :: t if x == y => compress(y :: t, res)
+    case x :: y :: t if x != y => compress(y :: t, x :: res)
+    case x :: Nil => x :: res
+    case _ => res
+  }
 }
