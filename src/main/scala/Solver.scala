@@ -1,9 +1,10 @@
+package Solver
+
 object Solver {
-  def last[A](lst: List[A]): A = 
-    if (lst.tail == Nil) lst.head
-    else last(lst)
- 
-  def main(args: Array[String]) { 
-    println("Hello!")
+  // Problem 1
+  def last[A](lst: List[A]): A = lst match {
+    case h :: Nil => h
+    case _ :: t => last(t)
+    case _ => throw new NoSuchElementException
   }
 }
