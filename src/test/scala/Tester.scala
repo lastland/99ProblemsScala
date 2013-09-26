@@ -1,5 +1,5 @@
 import org.scalatest.Suite
-import Solver.Solver._
+import S99.Solver._
 
 class SolverTest extends Suite { 
   // Problem 1

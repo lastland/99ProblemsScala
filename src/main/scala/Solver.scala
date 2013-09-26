@@ -1,4 +1,4 @@
-package Solver
+package S99
 
 object Solver {
   // Problem 1
