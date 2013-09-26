@@ -126,4 +126,16 @@ class SolverTest extends Suite {
     assert(duplicate(List('a)) === List('a, 'a))
     assert(duplicate(Nil) === Nil)
   }
+
+  // Problem 15
+  def testDuplicateN = { 
+    assert(duplicateN(3, List('a, 'b, 'c, 'c, 'd)) ===
+      List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd))
+    assert(duplicateN(4, List('a)) === List('a, 'a, 'a, 'a))
+    assert(duplicateN(0, List('a)) === Nil)
+    assert(duplicateN(3, Nil) === Nil)
+    intercept[IllegalArgumentException] { 
+      duplicateN(-1, List('a))
+    }
+  }
 }

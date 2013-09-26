@@ -107,10 +107,12 @@ object Solver {
     }
 
   // Problem 14
-  def duplicate[A](lst: List[A]): List[A] = reverse(duplicate(lst, Nil))
+  def duplicate[A](lst: List[A]): List[A] = lst flatMap { 
+    e => repeat(2, e)
+  }
 
-  private def duplicate[A](lst: List[A], res: List[A]): List[A] = lst match { 
-    case Nil => res
-    case h :: t => duplicate(t, h :: h :: res)
+  // Problem 15
+  def duplicateN[A](n: Int, lst: List[A]): List[A] = lst flatMap { 
+    e => repeat(n, e)
   }
 }
