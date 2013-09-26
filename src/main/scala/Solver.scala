@@ -115,4 +115,14 @@ object Solver {
   def duplicateN[A](n: Int, lst: List[A]): List[A] = lst flatMap { 
     e => repeat(n, e)
   }
+
+  // Problem 16
+  def drop[A](n: Int, lst: List[A]): List[A] = reverse(drop(n, 1, lst, Nil))
+
+  private def drop[A](n: Int, p: Int, lst: List[A], res: List[A]): List[A] = lst match
+  {
+    case Nil => res
+    case h :: t => if (p == n) drop(n, 1, t, res)
+	      else drop(n, p + 1, t, h :: res)
+  }
 }
