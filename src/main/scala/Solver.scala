@@ -34,7 +34,7 @@ object Solver {
   // Problem 5
   def reverse[A](lst: List[A]): List[A] = reverse(lst, Nil)
 
-  def reverse[A](lst: List[A], res: List[A]): List[A] = lst match { 
+  private def reverse[A](lst: List[A], res: List[A]): List[A] = lst match { 
     case Nil => res
     case h :: t => reverse(t, h :: res)
   }
@@ -51,10 +51,37 @@ object Solver {
   // Problem 8
   def compress[A](lst: List[A]): List[A] = reverse(compress(lst, Nil))
 
-  def compress[A](lst: List[A], res: List[A]): List[A] = lst match {
+  private def compress[A](lst: List[A], res: List[A]): List[A] = lst match {
     case x :: y :: t if x == y => compress(y :: t, res)
     case x :: y :: t if x != y => compress(y :: t, x :: res)
     case x :: Nil => x :: res
     case _ => res
+  }
+
+  // Problem 9
+  def pack[A](lst: List[A]): List[List[A]] = reverse(pack(lst, Nil, Nil))
+
+  private def pack[A](lst: List[A], now: List[A], res: List[List[A]]): List[List[A]] = lst match { 
+    case x :: y :: t if x == y => pack(y :: t, x :: now, res)
+    case x :: y :: t if x != y => pack(y :: t, Nil, (x :: now) :: res)
+    case x :: Nil => (x :: now) :: res
+    case _ => res
+  }
+
+  // Problem 10
+  def encode[A](lst: List[A]): List[(Int, A)] = encode2(pack(lst))
+
+  private def encode2[A](lst: List[List[A]]): List[(Int, A)] = lst map { 
+    l => (l.length, l.head)
+  }
+
+  // Problem 11
+  def encodeModified[A](lst: List[A]): List[Any] = encodeModified2(pack(lst))
+
+  def encodeModified2[A](lst: List[List[A]]): List[Any] = lst map { 
+    l => l.length match { 
+      case 1 => l.head
+      case _ => (l.length, l.head)
+    }
   }
 }

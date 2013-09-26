@@ -75,4 +75,28 @@ class SolverTest extends Suite {
     assert(compress(List('a, 'b, 'c, 'a, 'd, 'e)) === List('a, 'b, 'c, 'a, 'd, 'e))
     assert(compress(Nil) == Nil)
   }
+
+  // Problem 9
+  def testPack = { 
+    assert(pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) === 
+      List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e)))
+    assert(pack(List('a, 'b, 'c)) === List(List('a), List('b), List('c)))
+    assert(pack(List('a)) === List(List('a)))
+  }
+
+  // Problem 10
+  def testEncode = { 
+    assert(encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) ===
+      List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+    assert(encode(List('a, 'b, 'c)) === List((1, 'a), (1, 'b), (1, 'c)))
+    assert(encode(List('a)) === List((1, 'a)))
+  }
+  
+  // Problem 11
+  def testEncodeModified = { 
+    assert(encodeModified(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) ===
+      List((4, 'a), 'b, (2, 'c), (2, 'a), 'd, (4, 'e)))
+    assert(encodeModified(List('a, 'b, 'c)) === List('a, 'b, 'c))
+    assert(encodeModified(List('a)) == List('a))
+  }
 }
