@@ -84,4 +84,33 @@ object Solver {
       case _ => (l.length, l.head)
     }
   }
+
+  // Problem 12
+  def decode[A](lst: List[(Int, A)]): List[A] = lst flatMap { 
+    e => repeat(e._1, e._2)
+  }
+
+  private def repeat[A](n: Int, elt: A): List[A] = repeat(n, elt, Nil)
+
+  private def repeat[A](n: Int, elt: A, res: List[A]): List[A] = n match { 
+    case 0 => res
+    case n if n < 0 => throw new IllegalArgumentException
+    case _ => repeat(n - 1, elt, elt :: res)
+  }
+
+  // Problem 13
+  def encodeDirect[A](lst: List[A]): List[(Int, A)] = 
+    if (lst == Nil) Nil
+    else { 
+      val (f, s) = lst.span(_ == lst.head)
+      (f.length, f.head) :: encodeDirect(s)
+    }
+
+  // Problem 14
+  def duplicate[A](lst: List[A]): List[A] = reverse(duplicate(lst, Nil))
+
+  private def duplicate[A](lst: List[A], res: List[A]): List[A] = lst match { 
+    case Nil => res
+    case h :: t => duplicate(t, h :: h :: res)
+  }
 }

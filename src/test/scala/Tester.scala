@@ -99,4 +99,31 @@ class SolverTest extends Suite {
     assert(encodeModified(List('a, 'b, 'c)) === List('a, 'b, 'c))
     assert(encodeModified(List('a)) == List('a))
   }
+
+  // Problem 12
+  def testDecode = { 
+    assert(decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))) ===
+      List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+    assert(decode(List((1, 'a), (0, 'b), (2, 'c))) ===
+      List('a, 'c, 'c))
+    intercept[IllegalArgumentException] { 
+      decode(List((-1, 'a)))
+    }
+  }
+
+  // Problem 13
+  def testEncodeDirect = { 
+    assert(encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) ===
+      List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+    assert(encodeDirect(List('a, 'b, 'c)) === List((1, 'a), (1, 'b), (1, 'c)))
+    assert(encodeDirect(List('a)) === List((1, 'a)))
+  }
+
+  // Problem 14
+  def testDuplicate = { 
+    assert(duplicate(List('a, 'b, 'c, 'c, 'd)) ===
+      List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd))
+    assert(duplicate(List('a)) === List('a, 'a))
+    assert(duplicate(Nil) === Nil)
+  }
 }
