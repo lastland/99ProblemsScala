@@ -132,7 +132,7 @@ object Solver {
   private def split[A](n: Int, lst: List[A], res: List[A]): (List[A], List[A]) =
     if (n == 0 || lst.isEmpty) (reverse(res), lst)
     else if (n > 0) split(n - 1, lst.tail, lst.head :: res)
-    else throw new IllegalArgumentException
+    else split(lst.length + n, lst, Nil)
 
   // Problem 18
   def slice[A](i: Int, k: Int, lst: List[A]): List[A] = reverse(slice(i, k, 0, lst, Nil))
@@ -142,4 +142,14 @@ object Solver {
     else if (n < i) slice(i, k, n + 1, lst.tail, Nil)
     else if (n >= i && n < k) slice(i, k, n + 1, lst.tail, lst.head :: res)
     else res
+
+  // Problem 19
+  def rotate[A](n: Int, lst: List[A]): List[A] = { 
+    val t = split(n, lst)
+    val f = flatten(List(t._2, t._1))
+    f match { 
+      case l: List[A] => l
+      case _ => throw new RuntimeException // should never happen
+    }
+  }
 }

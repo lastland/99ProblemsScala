@@ -149,10 +149,9 @@ class SolverTest extends Suite {
   def testSplit = { 
     assert(split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
       (List('a, 'b, 'c), List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k)))
+    assert(split(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
+      (List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i), List('j, 'k)))
     assert(split(4, List('a, 'b, 'c)) === (List('a, 'b, 'c), Nil))
-    intercept[IllegalArgumentException] { 
-      split(-1, List('a))
-    }
   }
 
   // Problem 18
@@ -163,5 +162,13 @@ class SolverTest extends Suite {
     assert(slice(3, 6, List('a, 'b, 'c)) === Nil)
     assert(slice(-1, 100, List('a, 'b, 'c)) === List('a, 'b, 'c))
     assert(slice(-1, -2, List('a, 'b, 'c)) === Nil)
+  }
+
+  // Problem 19
+  def testRotate = { 
+    assert(rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
+      List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'a, 'b, 'c))
+    assert(rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
+      List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i))
   }
 }
