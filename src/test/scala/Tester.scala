@@ -171,4 +171,25 @@ class SolverTest extends Suite {
     assert(rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
       List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i))
   }
+
+  // Problem 20
+  def testRemoveAt = { 
+    assert(removeAt(0, List('a, 'b, 'c, 'd)) ===
+      (List('b, 'c, 'd), 'a))
+    assert(removeAt(1, List('a, 'b, 'c, 'd)) ===
+      (List('a, 'c, 'd), 'b))
+    intercept[IllegalArgumentException] { 
+      removeAt(4, List('a, 'b, 'c, 'd))
+    }
+  }
+
+  // Problem 21
+  def testInsertAt = { 
+    assert(insertAt('new, 0, List('a, 'b, 'c, 'd)) ===
+      List('new, 'a, 'b, 'c, 'd))
+    assert(insertAt('new, 1, List('a, 'b, 'c, 'd)) ===
+      List('a, 'new, 'b, 'c, 'd))
+    assert(insertAt('new, 4, List('a, 'b, 'c, 'd)) ===
+      List('a, 'b, 'c, 'd, 'new))
+  }
 }

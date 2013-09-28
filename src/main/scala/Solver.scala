@@ -148,4 +148,18 @@ object Solver {
     val t = split(n, lst)
     t._2 ::: t._1
   }
+
+  // Problem 20
+  def removeAt[A](n: Int, lst: List[A]): (List[A], A) = removeAt(n, 0, lst, Nil)
+
+  private def removeAt[A](n: Int, i: Int, lst: List[A], h: List[A]) : (List[A], A) =
+    if (lst.isEmpty) throw new IllegalArgumentException
+    else if (i >= n) (reverse(h) ::: lst.tail, lst.head)
+    else removeAt(n, i + 1, lst.tail, lst.head :: h)
+
+  // Problem 21
+  def insertAt[A](e: A, n: Int, lst: List[A]): List[A] = { 
+    val t = split(n, lst)
+    t._1 ::: e :: t._2
+  }
 }
