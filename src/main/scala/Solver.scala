@@ -146,10 +146,6 @@ object Solver {
   // Problem 19
   def rotate[A](n: Int, lst: List[A]): List[A] = { 
     val t = split(n, lst)
-    val f = flatten(List(t._2, t._1))
-    f match { 
-      case l: List[A] => l
-      case _ => throw new RuntimeException // should never happen
-    }
+    t._2 ::: t._1
   }
 }
