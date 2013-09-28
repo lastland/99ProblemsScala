@@ -192,4 +192,11 @@ class SolverTest extends Suite {
     assert(insertAt('new, 4, List('a, 'b, 'c, 'd)) ===
       List('a, 'b, 'c, 'd, 'new))
   }
+
+  // Problem 22
+  def testRange = { 
+    assert(range(4, 9) === List(4, 5, 6, 7, 8, 9))
+    assert(range(9, 4) === List(4, 5, 6, 7, 8, 9))
+    assert(range(5, 5) === List(5))
+  }
 }

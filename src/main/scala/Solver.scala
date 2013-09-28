@@ -162,4 +162,13 @@ object Solver {
     val t = split(n, lst)
     t._1 ::: e :: t._2
   }
+
+  // Problem 22
+  def range(s: Int, t: Int): List[Int] = 
+    if (s < t) range(s, t, t, Nil)
+    else range(t, s, s, Nil)
+
+  private def range(s: Int, t: Int, n: Int, lst: List[Int]): List[Int] = 
+    if (n < s) lst
+    else range(s, t, n - 1, n :: lst)
 }
