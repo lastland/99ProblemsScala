@@ -144,4 +144,24 @@ class SolverTest extends Suite {
     assert(drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
       List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k))
   }
+
+  // Problem 17
+  def testSplit = { 
+    assert(split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
+      (List('a, 'b, 'c), List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k)))
+    assert(split(4, List('a, 'b, 'c)) === (List('a, 'b, 'c), Nil))
+    intercept[IllegalArgumentException] { 
+      split(-1, List('a))
+    }
+  }
+
+  // Problem 18
+  def testSlice = { 
+    assert(slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
+      List('d, 'e, 'f, 'g))
+    assert(slice(3, 6, List('a, 'b, 'c, 'd)) === List('d))
+    assert(slice(3, 6, List('a, 'b, 'c)) === Nil)
+    assert(slice(-1, 100, List('a, 'b, 'c)) === List('a, 'b, 'c))
+    assert(slice(-1, -2, List('a, 'b, 'c)) === Nil)
+  }
 }

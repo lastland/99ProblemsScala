@@ -125,4 +125,21 @@ object Solver {
     case h :: t => if (p == n) drop(n, 1, t, res)
 	      else drop(n, p + 1, t, h :: res)
   }
+
+  // Problem 17
+  def split[A](n: Int, lst: List[A]): (List[A], List[A]) = split(n, lst, Nil)
+
+  private def split[A](n: Int, lst: List[A], res: List[A]): (List[A], List[A]) =
+    if (n == 0 || lst.isEmpty) (reverse(res), lst)
+    else if (n > 0) split(n - 1, lst.tail, lst.head :: res)
+    else throw new IllegalArgumentException
+
+  // Problem 18
+  def slice[A](i: Int, k: Int, lst: List[A]): List[A] = reverse(slice(i, k, 0, lst, Nil))
+  
+  private def slice[A](i: Int, k: Int, n: Int, lst: List[A], res: List[A]): List[A] =
+    if (lst.isEmpty) res
+    else if (n < i) slice(i, k, n + 1, lst.tail, Nil)
+    else if (n >= i && n < k) slice(i, k, n + 1, lst.tail, lst.head :: res)
+    else res
 }
