@@ -1,7 +1,7 @@
 package S99
 import scala.util.Random
 
-object Solver {
+object S99List {
   // Problem 1
   def last[A](lst: List[A]): A = lst match {
     case h :: Nil => h
