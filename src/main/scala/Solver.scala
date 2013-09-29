@@ -1,4 +1,5 @@
 package S99
+import scala.util.Random
 
 object Solver {
   // Problem 1
@@ -171,4 +172,23 @@ object Solver {
   private def range(s: Int, t: Int, n: Int, lst: List[Int]): List[Int] = 
     if (n < s) lst
     else range(s, t, n - 1, n :: lst)
+
+  // Problem 23
+  def randomSelect[A](n: Int, lst: List[A]): List[A] = 
+    randomSelect(n, lst.length, lst, Nil, new Random)
+
+  def randomSelect[A](n: Int, l: Int, lst: List[A], res: List[A], r: Random) : List[A] = 
+    if (n == 0) res
+    else { 
+      val e = removeAt(r.nextInt(l), lst)
+      randomSelect(n - 1, l - 1, e._1, e._2 :: res, r)
+    }
+
+  // Problem 24
+  def lotto(n: Int, r: Int): List[Int] =
+    randomSelect(n, range(1, r))
+
+  // Problem 25
+  def randomPermute[A](l: List[A]) =
+    randomSelect(l.length, l)
 }

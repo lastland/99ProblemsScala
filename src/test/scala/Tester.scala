@@ -199,4 +199,43 @@ class SolverTest extends Suite {
     assert(range(9, 4) === List(4, 5, 6, 7, 8, 9))
     assert(range(5, 5) === List(5))
   }
+
+  // Problem 23. I don't really know how to test random function. = =
+  def testRandomSelect = {
+    val l = List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h)
+    for (i <- 1 to 20) {
+      val r = randomSelect(3, l)
+      assert(r.length === 3)
+      assert(r.distinct.length === 3)
+      for (e <- r) { 
+	assert(l.contains(e))
+      }
+    }
+    assert(randomSelect(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h)).length === 3)
+  }
+
+  // Problem 24
+  def testLotto = { 
+    for (i <- 1 to 20) {
+      val l = lotto(6, 49)
+      assert(l.length === 6)
+      assert(l.distinct.length === 6)
+      for (e <- l) { 
+	assert(e >= 1 && e <= 49)
+      }
+    }
+  }
+
+  // Problem 25
+  def testRandomPermute = { 
+    for (i <- 1 to 20) { 
+      val l = List('a, 'b, 'c, 'd, 'e, 'f)
+      val r = randomPermute(l)
+      assert(r.length === 6)
+      assert(r.distinct.length === 6)
+      for (e <- r) { 
+	assert(l.contains(e))
+      }
+    }
+  }
 }
