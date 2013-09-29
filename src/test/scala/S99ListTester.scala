@@ -1,7 +1,7 @@
 import org.scalatest.Suite
 import S99.S99List._
 
-class SolverTest extends Suite { 
+class ListTest extends Suite { 
   // Problem 1
   def testLast { 
     assert(last(List(1)) === 1)
