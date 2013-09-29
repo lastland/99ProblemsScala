@@ -9,6 +9,7 @@ class ArithmeticTest extends Suite {
     assert(gcd(35, 64) === 1)
   }
 
+  // Problem 33
   def testIsCoprimeTo = { 
     assert(35.isCoprimeTo(64) === true)
     assert(36.isCoprimeTo(64) === false)
