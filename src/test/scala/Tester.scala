@@ -238,4 +238,22 @@ class SolverTest extends Suite {
       }
     }
   }
+
+  def testCombination = { 
+    val l = Array(range(1, 6), range(1, 12))
+    val n = Array(3, 3)
+    val a = Array(20, 220)
+    for (i <- 0 to 1) {
+      val r = combination(n(i), l(i))
+      assert(r.length === a(i))
+      assert(r.distinct.length === a(i))
+      for (e <- r) { 
+	assert(e.length === n(i))
+	assert(e.distinct.length === n(i))
+	for (s <- e) { 
+	  assert(l(i).contains(s))
+	}
+      }
+    }
+  }
 }

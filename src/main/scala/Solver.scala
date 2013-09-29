@@ -191,4 +191,21 @@ object Solver {
   // Problem 25
   def randomPermute[A](l: List[A]) =
     randomSelect(l.length, l)
+
+  // Problem 26
+  def combination[A](n: Int, lst: List[A]): List[List[A]] =
+    if (n < 0 || n > lst.length) throw new IllegalArgumentException
+    else reverse(combination(n, lst, Nil, Nil))
+
+  private def combination[A](n: Int, lst: List[A], now: List[A], res: List[List[A]]): List[List[A]] = 
+    if (n == 0) reverse(now) :: res
+    else { 
+      var l = lst
+      var r = res
+      while (!l.isEmpty) { 
+	r = combination(n - 1, l.tail, l.head :: now, r)
+	l = l.tail
+      }
+      r
+    }
 }
