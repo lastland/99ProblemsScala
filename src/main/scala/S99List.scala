@@ -208,4 +208,22 @@ object S99List {
       }
       r
     }
+
+  // Problem 27
+  def group3[A](lst: List[A]): List[List[List[A]]] =
+    if (lst.length != 9) throw new IllegalArgumentException
+    else group3_2(lst)
+
+  private def group3_2[A](lst: List[A]): List[List[List[A]]] = {
+    val l = combination(2, lst)
+    l flatMap { e => group3_3(lst.filter(!e.contains(_)), e) }
+  }
+
+  private def group3_3[A](lst: List[A], lst2: List[A]): List[List[List[A]]] = { 
+    val l = combination(3, lst)
+    for (e <- l) yield group3_4(lst.filter(!e.contains(_)), lst2, e)
+  }
+
+  private def group3_4[A](lst: List[A], lst2: List[A], lst3: List[A]): List[List[A]] = 
+    List(lst2, lst3, lst)
 }

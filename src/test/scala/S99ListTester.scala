@@ -239,6 +239,7 @@ class ListTest extends Suite {
     }
   }
 
+  // Problem 26
   def testCombination = { 
     val l = Array(range(1, 6), range(1, 12))
     val n = Array(3, 3)
@@ -254,6 +255,25 @@ class ListTest extends Suite {
 	  assert(l(i).contains(s))
 	}
       }
+    }
+  }
+
+  // Problem 27
+  def testGroup3 = { 
+    val res = group3(range(1, 9))
+    assert(res.length === 1260)
+    for (i <- res) { 
+      assert(i.length === 3)
+      assert(i(0).length === 2)
+      assert(i(1).length === 3)
+      assert(i(2).length === 4)
+      assert(flatten(i).distinct.length === 9)
+    }
+    intercept[IllegalArgumentException] { 
+      group3(range(1, 8))
+    }
+    intercept[IllegalArgumentException] { 
+      group3(range(1, 10))
     }
   }
 }
