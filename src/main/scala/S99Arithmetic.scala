@@ -15,10 +15,17 @@ object S99Arithmetic {
   }
 
   val primes = 2 #:: Stream.from(3, 2).filter(_ isPrime)
+
+  private def factWithList(n: Int, lst: List[Int], res: List[Int]): List[Int] = 
+    if (n.isPrime) n :: res
+    else if (lst.isEmpty || n == 1) res
+    else if (n % lst.head == 0) factWithList(n / lst.head, lst, lst.head :: res)
+    else factWithList(n, lst.tail, res)
   
   case class S99Int(value: Int) {
     // Problem 31
     def isPrime: Boolean =
+      // I want memoize!!!
       (value > 1) && (primes.takeWhile(_ <= sqrt(value).toInt).forall(value % _ != 0))
 
     // Problem 33
@@ -26,5 +33,9 @@ object S99Arithmetic {
 
     // Problem 34
     def totient: Int = range(1, value).filter(isCoprimeTo(_)).length
+
+    // Problem 35 (slow)
+    def primeFactors = 
+      reverse(factWithList(value, primes.takeWhile(_ <= value).toList, Nil))
   }
 }

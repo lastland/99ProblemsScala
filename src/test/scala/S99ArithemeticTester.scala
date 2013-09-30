@@ -33,4 +33,12 @@ class ArithmeticTest extends Suite {
     assert(36.totient === 12)
     assert(99.totient === 60)
   }
+
+  // Problem 35
+  def testPrimeFactors = {
+    assert(1.primeFactors === Nil)
+    assert(2.primeFactors === List(2))
+    assert(315.primeFactors === List(3, 3, 5, 7))
+    assert(3560287.primeFactors === List(997, 3571))
+  }
 }
