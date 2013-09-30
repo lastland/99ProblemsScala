@@ -2,7 +2,6 @@ package S99
 import scala.math._
 import scala.collection.immutable.Stream
 import scala.collection.immutable.HashMap
-import scala.collection.mutable.HashSet
 import S99List._
 
 object S99Arithmetic { 
@@ -17,7 +16,6 @@ object S99Arithmetic {
   }
 
   val primeStream = 2 #:: Stream.from(3, 2).filter(_ isPrime)
-  val primes = new HashSet[Int]
 
   private def factWithList(n: Int, lst: Iterable[Int], res: List[Int]): List[Int] = 
     if (n.isPrime) n :: res
@@ -32,6 +30,7 @@ object S99Arithmetic {
     case _ => res
   }
   
+  // Problem 39
   def listPrimesinRange(l: Range): List[Int] = {
     val lst = primeStream.dropWhile(_ < l.min).takeWhile(_ <= l.max).toList
     for (elt <- lst if l.contains(elt)) yield elt
@@ -41,9 +40,7 @@ object S99Arithmetic {
     // Problem 31
     def isPrime: Boolean =
       // I want memoize!!!
-      if (primes(value))
-	true
-      else (value > 1) && (primeStream.takeWhile(_ <= sqrt(value).toInt).forall(value % _ != 0))
+      (value > 1) && (primeStream.takeWhile(_ <= sqrt(value).toInt).forall(value % _ != 0))
 
     // Problem 33
     def isCoprimeTo(n: Int): Boolean = gcd(value, n) == 1
