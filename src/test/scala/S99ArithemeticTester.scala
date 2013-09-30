@@ -57,4 +57,21 @@ class ArithmeticTest extends Suite {
     assert(315.primeFactorMultiplicity === Map(3 -> 2, 5 -> 1, 7 -> 1))
     assert(991026973.primeFactorMultiplicity === Map(997 -> 3))
   }
+
+  // Problem 38
+  def testPerformanceForTotient = { 
+    print("totient:  ")
+    val a = time(10090.totient)
+    print("totienti: ")
+    val b = time(10090.totient)
+    assert(a === b)
+  }
+
+  private def time[A](a: => A) = { 
+    val now = System.nanoTime
+    val result = a
+    val end = (System.nanoTime - now) / 1000
+    println("%d microseconds".format(end))
+    result
+  }
 }
