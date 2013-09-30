@@ -34,6 +34,14 @@ class ArithmeticTest extends Suite {
     assert(99.totient === 60)
   }
 
+  // Problem 37
+  def testTotienti = { 
+    assert(1.totienti === 1)
+    assert(10.totienti === 4)
+    assert(36.totienti === 12)
+    assert(99.totienti === 60)
+  }
+
   // Problem 35
   def testPrimeFactors = {
     assert(1.primeFactors === Nil)

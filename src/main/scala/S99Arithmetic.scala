@@ -46,6 +46,11 @@ object S99Arithmetic {
     // Problem 34
     def totient: Int = range(1, value).filter(isCoprimeTo(_)).length
 
+    // Problem 37
+    def totienti: Int = 
+      if (value == 1) 1
+      else primeFactorMultiplicity.map(e => (e._1 - 1) * pow(e._1, e._2 - 1).toInt).product
+
     // Problem 35
     def primeFactors = 
       reverse(factWithList(value, primeStream.takeWhile(_ <= value), Nil))
