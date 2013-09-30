@@ -41,4 +41,12 @@ class ArithmeticTest extends Suite {
     assert(315.primeFactors === List(3, 3, 5, 7))
     assert(3560287.primeFactors === List(997, 3571))
   }
+
+  // Problem 36
+  def testPrimeFactorMultiplicity = { 
+    assert(1.primeFactorMultiplicity === Map())
+    assert(2.primeFactorMultiplicity === Map(2 -> 1))
+    assert(315.primeFactorMultiplicity === Map(3 -> 2, 5 -> 1, 7 -> 1))
+    assert(991026973.primeFactorMultiplicity === Map(997 -> 3))
+  }
 }

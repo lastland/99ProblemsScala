@@ -1,6 +1,7 @@
 package S99
 import scala.math._
 import scala.collection.immutable.Stream
+import scala.collection.immutable.HashMap
 import scala.collection.mutable.HashSet
 import S99List._
 
@@ -23,6 +24,13 @@ object S99Arithmetic {
     else if (lst.isEmpty || n == 1) res
     else if (n % lst.head == 0) factWithList(n / lst.head, lst, lst.head :: res)
     else factWithList(n, lst.tail, res)
+
+  private def factCnt(lst: List[Int], cnt: Int, res: Map[Int, Int]): Map[Int, Int] = lst match { 
+    case x :: y :: t if x == y => factCnt(lst.tail, cnt + 1, res)
+    case x :: y :: t if x != y => factCnt(lst.tail, 1, res + (x -> cnt))
+    case h :: Nil => res + (h -> cnt)
+    case _ => res
+  }
   
   case class S99Int(value: Int) {
     // Problem 31
@@ -41,5 +49,9 @@ object S99Arithmetic {
     // Problem 35
     def primeFactors = 
       reverse(factWithList(value, primeStream.takeWhile(_ <= value), Nil))
+
+    // Problem 36
+    def primeFactorMultiplicity: Map[Int, Int] = 
+      factCnt(primeFactors, 1, new HashMap())
   }
 }
