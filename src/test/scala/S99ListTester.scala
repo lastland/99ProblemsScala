@@ -276,4 +276,33 @@ class ListTest extends Suite {
       group3(range(1, 10))
     }
   }
+  
+  def testGroup = { 
+    val nums = Array(List(2, 3, 4), List(2, 2, 5), List(1, 2, 3, 5))
+    val lsts = Array(range(1, 9), range(2, 10), range(3, 13))
+    val lens = Array(1260, 756, 27720)
+    for (i <- 0 to 2) { 
+      val res = group(nums(i), lsts(i))
+      assert(res.length === lens(i))
+      for (j <- res) { 
+	assert(j.length === nums(i).length)
+	for (k <- 0 until nums.length) {
+	  assert(j(k).length === nums(i)(k))
+	}
+	assert(flatten(j).distinct.length === nums(i).sum)
+      }
+      intercept[IllegalArgumentException] { 
+	group(nums(i), range(1, 5))
+      }
+      intercept[IllegalArgumentException] { 
+	group(nums(i), lsts(i).tail)
+      }
+      intercept[IllegalArgumentException] { 
+	group(nums(i), 100 :: lsts(i))
+      }
+      intercept[IllegalArgumentException] { 
+	group(nums(i), range(1, 100))
+      }
+    }
+  }
 }

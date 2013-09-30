@@ -211,19 +211,17 @@ object S99List {
 
   // Problem 27
   def group3[A](lst: List[A]): List[List[List[A]]] =
-    if (lst.length != 9) throw new IllegalArgumentException
-    else group3_2(lst)
+    group(List(2, 3, 4), lst)
 
-  private def group3_2[A](lst: List[A]): List[List[List[A]]] = {
-    val l = combination(2, lst)
-    l flatMap { e => group3_3(lst.filter(!e.contains(_)), e) }
+  def group[A](nums: List[Int], lst: List[A]) : List[List[List[A]]] =
+    if (nums.isEmpty || nums.sum != lst.length) throw new IllegalArgumentException
+    else group(nums, lst, Nil)
+
+  private def group[A](nums: List[Int], lst: List[A], res: List[List[A]]): List[List[List[A]]] = nums match { 
+    case h :: Nil => List(reverse(lst :: res))
+    case _ => { 
+      val l = combination(nums.head, lst)
+      l flatMap { e => group(nums.tail, lst.filter(!e.contains(_)), e :: res) }
+    }
   }
-
-  private def group3_3[A](lst: List[A], lst2: List[A]): List[List[List[A]]] = { 
-    val l = combination(3, lst)
-    for (e <- l) yield group3_4(lst.filter(!e.contains(_)), lst2, e)
-  }
-
-  private def group3_4[A](lst: List[A], lst2: List[A], lst3: List[A]): List[List[A]] = 
-    List(lst2, lst3, lst)
 }
