@@ -74,4 +74,8 @@ class ArithmeticTest extends Suite {
     println("%d microseconds".format(end))
     result
   }
+
+  def testListPrimesinRange = { 
+    assert(listPrimesinRange(7 to 31) === List(7, 11, 13, 17, 19, 23, 29, 31))
+  }
 }

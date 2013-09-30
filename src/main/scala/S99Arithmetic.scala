@@ -32,6 +32,11 @@ object S99Arithmetic {
     case _ => res
   }
   
+  def listPrimesinRange(l: Range): List[Int] = {
+    val lst = primeStream.dropWhile(_ < l.min).takeWhile(_ <= l.max).toList
+    for (elt <- lst if l.contains(elt)) yield elt
+  }
+
   case class S99Int(value: Int) {
     // Problem 31
     def isPrime: Boolean =
