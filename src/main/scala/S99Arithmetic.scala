@@ -1,6 +1,7 @@
 package S99
 import scala.math._
 import scala.collection.immutable.Stream
+import scala.collection.mutable.HashSet
 import S99List._
 
 object S99Arithmetic { 
@@ -14,9 +15,10 @@ object S99Arithmetic {
     }
   }
 
-  val primes = 2 #:: Stream.from(3, 2).filter(_ isPrime)
+  val primeStream = 2 #:: Stream.from(3, 2).filter(_ isPrime)
+  val primes = new HashSet[Int]
 
-  private def factWithList(n: Int, lst: List[Int], res: List[Int]): List[Int] = 
+  private def factWithList(n: Int, lst: Iterable[Int], res: List[Int]): List[Int] = 
     if (n.isPrime) n :: res
     else if (lst.isEmpty || n == 1) res
     else if (n % lst.head == 0) factWithList(n / lst.head, lst, lst.head :: res)
@@ -26,7 +28,9 @@ object S99Arithmetic {
     // Problem 31
     def isPrime: Boolean =
       // I want memoize!!!
-      (value > 1) && (primes.takeWhile(_ <= sqrt(value).toInt).forall(value % _ != 0))
+      if (primes(value))
+	true
+      else (value > 1) && (primeStream.takeWhile(_ <= sqrt(value).toInt).forall(value % _ != 0))
 
     // Problem 33
     def isCoprimeTo(n: Int): Boolean = gcd(value, n) == 1
@@ -34,8 +38,8 @@ object S99Arithmetic {
     // Problem 34
     def totient: Int = range(1, value).filter(isCoprimeTo(_)).length
 
-    // Problem 35 (slow)
+    // Problem 35
     def primeFactors = 
-      reverse(factWithList(value, primes.takeWhile(_ <= value).toList, Nil))
+      reverse(factWithList(value, primeStream.takeWhile(_ <= value), Nil))
   }
 }
