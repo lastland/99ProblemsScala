@@ -19,6 +19,6 @@ object S99Arithmetic {
     def isCoprimeTo(n: Int): Boolean = gcd(value, n) == 1
 
     // Problem 34
-    def totient: Int = range(1, value).filter(_.isCoprimeTo(value)).length
+    def totient: Int = range(1, value).filter(isCoprimeTo(_)).length
   }
 }
