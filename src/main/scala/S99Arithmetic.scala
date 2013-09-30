@@ -1,11 +1,7 @@
 package S99
+import scala.math._
+import S99List._
 
-class S99Int(value: Int) {
-  import S99Arithmetic._
-  
-  // Problem 33
-  def isCoprimeTo(n: Int): Boolean = gcd(value, n) == 1
-}
 
 object S99Arithmetic { 
   implicit def intToS99Int(x: Int) = new S99Int(x)
@@ -16,5 +12,13 @@ object S99Arithmetic {
     else { 
       gcd(b, a % b)
     }
+  }
+  
+  case class S99Int(value: Int) {
+    // Problem 33
+    def isCoprimeTo(n: Int): Boolean = gcd(value, n) == 1
+
+    // Problem 34
+    def totient: Int = range(1, value).filter(_.isCoprimeTo(value)).length
   }
 }

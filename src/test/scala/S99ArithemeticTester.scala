@@ -1,6 +1,5 @@
 import org.scalatest.Suite
 import S99.S99Arithmetic._
-import S99.S99Int
 
 class ArithmeticTest extends Suite { 
   // Problem 32
@@ -13,5 +12,13 @@ class ArithmeticTest extends Suite {
   def testIsCoprimeTo = { 
     assert(35.isCoprimeTo(64) === true)
     assert(36.isCoprimeTo(64) === false)
+  }
+
+  // Problem 34
+  def testTotient = { 
+    assert(1.totient === 1)
+    assert(10.totient === 4)
+    assert(36.totient === 12)
+    assert(99.totient === 60)
   }
 }
