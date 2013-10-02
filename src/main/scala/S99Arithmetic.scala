@@ -35,6 +35,21 @@ object S99Arithmetic {
     val lst = primeStream.dropWhile(_ < l.min).takeWhile(_ <= l.max).toList
     for (elt <- lst if l.contains(elt)) yield elt
   }
+  
+    // Problem 41
+  def printGoldbachList(r: Range) { 
+    printGoldbachListLimited(r, 1)
+  }
+
+  def printGoldbachListLimited(r: Range, minp: Int) { 
+    if (minp < 1) throw new IllegalArgumentException
+    for (i <- r) {
+      if (i > 2 && i % 2 == 0) { 
+	val (x, y) = i.goldbach
+	if (x > minp) println("%d = %d + %d".format(i, x, y))
+      }
+    }
+  }
 
   case class S99Int(value: Int) {
     // Problem 31

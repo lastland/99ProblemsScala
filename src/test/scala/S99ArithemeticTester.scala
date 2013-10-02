@@ -95,4 +95,33 @@ class ArithmeticTest extends Suite {
       9.goldbach
     }
   }
+
+  // Problem 41
+  def testPrintGoldbachList = { 
+    val stream = new java.io.ByteArrayOutputStream()
+    Console.withOut(stream) { 
+      printGoldbachList(9 to 20)
+    }
+    val ans = """|10 = 3 + 7
+		 |12 = 5 + 7
+		 |14 = 3 + 11
+		 |16 = 3 + 13
+		 |18 = 5 + 13
+		 |20 = 3 + 17
+		 |""".stripMargin
+    assert(stream.toString === ans)
+  }
+
+  def testPrintGoldbachListLimited = { 
+    val stream = new java.io.ByteArrayOutputStream()
+    Console.withOut(stream) { 
+      printGoldbachListLimited(1 to 2000, 50)
+    }
+    val ans = """|992 = 73 + 919
+		 |1382 = 61 + 1321
+		 |1856 = 67 + 1789
+		 |1928 = 61 + 1867
+		 |""".stripMargin
+    assert(stream.toString === ans)
+  }
 }
