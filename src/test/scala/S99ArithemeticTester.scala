@@ -79,4 +79,20 @@ class ArithmeticTest extends Suite {
   def testListPrimesinRange = { 
     assert(listPrimesinRange(7 to 31) === List(7, 11, 13, 17, 19, 23, 29, 31))
   }
+
+  // Problem 40
+  def testGoldbach = { 
+    for (i <- 4 to 1000 by 2) { 
+      val (x, y) = i.goldbach
+      assert(x + y === i)
+      assert(x.isPrime)
+      assert(y.isPrime)
+    }
+    intercept[IllegalArgumentException] { 
+      2.goldbach
+    }
+    intercept[IllegalArgumentException] { 
+      9.goldbach
+    }
+  }
 }

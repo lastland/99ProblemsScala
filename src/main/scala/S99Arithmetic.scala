@@ -60,5 +60,15 @@ object S99Arithmetic {
     // Problem 36
     def primeFactorMultiplicity: Map[Int, Int] = 
       factCnt(primeFactors, 1, new HashMap())
+
+    // Problem 40
+    def goldbach: (Int, Int) = { 
+      if (value <= 2 || value % 2 != 0) throw new IllegalArgumentException
+      for (i <- primeStream.takeWhile(_ <= value / 2)) { 
+	val j = value - i
+	if (j.isPrime) return (i, j)
+      }
+      throw new RuntimeException // should never happen
+    }
   }
 }
