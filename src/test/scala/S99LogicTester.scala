@@ -1,4 +1,5 @@
 import org.scalatest.Suite
+import java.io.{ ByteArrayOutputStream => OStream }
 import S99.S99Logic._
 
 class LogicTest extends Suite { 
@@ -53,9 +54,24 @@ class LogicTest extends Suite {
   }
 
   def testTable2 = { 
-    val stream = new java.io.ByteArrayOutputStream()
+    val stream = new OStream
     Console.withOut(stream) { 
       table2((a: Boolean, b: Boolean) => and(a, or(a, b)))
+    }
+    val ans = """|A     B     result
+		 |true  true  true 
+		 |true  false true 
+		 |false true  false
+		 |false false false
+		 |""".stripMargin
+    assert(stream.toString === ans)
+  }
+
+  // Problem 47
+  def testTable2_2 = { 
+    val stream = new OStream
+    Console.withOut(stream) { 
+      table2((a: Boolean, b: Boolean) => a and (a or not(b)))
     }
     val ans = """|A     B     result
 		 |true  true  true 
