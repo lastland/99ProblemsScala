@@ -224,4 +224,14 @@ object S99List {
       l flatMap { e => group(nums.tail, lst.filter(!e.contains(_)), e :: res) }
     }
   }
+
+  // Problem 28
+  def lsort[A](lst: List[List[A]]): List[List[A]] =
+    // personally, I think the built-in sort function makes this too easy
+    lst.sortWith(_.length < _.length)
+
+  def lsortFreq[A](lst: List[List[A]]): List[List[A]] = {
+    val fs = Map(encode(lst.map(_.length).sorted).map(_.swap):_*)
+    lst.sortWith((e1, e2) => fs(e1.length) < fs(e2.length))
+  }
 }

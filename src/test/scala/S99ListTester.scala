@@ -305,4 +305,17 @@ class ListTest extends Suite {
       }
     }
   }
+  
+  // Problem 28
+  def testLsort = { 
+    assert(lsort(Nil) === Nil)
+    assert(lsort(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o))) ===
+      List(List('o), List('d, 'e), List('d, 'e), List('m, 'n), List('a, 'b, 'c), List('f, 'g, 'h), List('i, 'j, 'k, 'l)))
+  }
+
+  def testLsortFreq = { 
+    assert(lsortFreq(Nil) === Nil)
+    assert(lsortFreq(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o))) ===
+      List(List('i, 'j, 'k, 'l), List('o), List('a, 'b, 'c), List('f, 'g, 'h), List('d, 'e), List('d, 'e), List('m, 'n)))
+  }
 }
