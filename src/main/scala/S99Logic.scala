@@ -1,4 +1,5 @@
 package S99
+import S99.S99List._
 
 object S99Logic { 
   implicit def booleanToS99Bool(x: Boolean) = new S99Bool(x)
@@ -43,6 +44,15 @@ object S99Logic {
       for (j <- List(true, false))
 	println("%-5s %-5s %-5s".format(i, j, f(i, j)))
   }
+
+  // Problem 48
+  def gray(n: Int): List[String] = 
+    if (n < 1) throw new IllegalArgumentException
+    else if (n == 1) List("0", "1")
+    else { 
+      val l = gray(n - 1)
+      l.map("0" + _) ::: reverse(l.map("1" + _))
+    }
   
   // Problem 47
   class S99Bool(value: Boolean) { 

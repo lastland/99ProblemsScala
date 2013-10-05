@@ -81,4 +81,18 @@ class LogicTest extends Suite {
 		 |""".stripMargin
     assert(stream.toString === ans)
   }
+
+  // Problem 49
+  def testGray = { 
+    for (i <- 1 to 10) { 
+      val lst = gray(i).toArray
+      assert(lst.length === lst.distinct.length)
+      for (i <- 0 until lst.length - 1) { 
+	assert(lst(i).diff(lst(i + 1)).length === 1)
+      }
+    }
+    intercept[IllegalArgumentException] { 
+      gray(0)
+    }
+  }
 }
