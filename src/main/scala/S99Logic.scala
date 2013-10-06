@@ -45,7 +45,7 @@ object S99Logic {
 	println("%-5s %-5s %-5s".format(i, j, f(i, j)))
   }
 
-  // Problem 48
+  // Problem 49
   def gray(n: Int): List[String] = 
     if (n < 1) throw new IllegalArgumentException
     else if (n == 1) List("0", "1")
