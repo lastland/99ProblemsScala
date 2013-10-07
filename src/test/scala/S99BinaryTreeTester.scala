@@ -11,6 +11,15 @@ class BinaryTreeTest extends Suite {
       }
     }
   }
+
+  // Problem 56
+  def testIsSymmetric = { 
+    assert(Node('a', Node('b'), Node('c')).isSymmetric === true)
+    assert(Node('a', Node('b'), End).isSymmetric === false)
+    assert(Node('a', End, Node('b')).isSymmetric === false)
+    assert(Node('a', Node('a', Node('a'), End), Node('a', End, Node('a'))).isSymmetric === true)
+    assert(Node('a', Node('a', Node('a'), End), Node('a', Node('a'), End)).isSymmetric === false)
+  }
   
   def isBalanced[T](t: Tree[T]): Boolean = t match { 
     case Node(_, End, End) => true
