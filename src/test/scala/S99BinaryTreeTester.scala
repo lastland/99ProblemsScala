@@ -20,7 +20,17 @@ class BinaryTreeTest extends Suite {
     assert(Node('a', Node('a', Node('a'), End), Node('a', End, Node('a'))).isSymmetric === true)
     assert(Node('a', Node('a', Node('a'), End), Node('a', Node('a'), End)).isSymmetric === false)
   }
-  
+
+  // Problem 57
+  def testAddValueAndFromList = {
+    assert(End.addValue(2) === Node(2))
+    assert(Node(2).addValue(3) === Node(2, End, Node(3)))
+    assert(Node(2, End, Node(3)).addValue(0) === Node(2, Node(0), Node(3)))
+    assert(Tree.fromList(List(3, 2, 5, 7, 1)) === Node(3, Node(2, Node(1), End), Node(5, End, Node(7))))
+    assert(Tree.fromList(List(5, 3, 18, 1, 4, 12, 21)).isSymmetric === true)
+    assert(Tree.fromList(List(3, 2, 5, 7, 4)).isSymmetric === false)
+  }
+
   def isBalanced[T](t: Tree[T]): Boolean = t match { 
     case Node(_, End, End) => true
     case Node(_, l, End) => nodeNum(l) == 1
