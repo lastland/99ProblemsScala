@@ -31,6 +31,13 @@ class BinaryTreeTest extends Suite {
     assert(Tree.fromList(List(3, 2, 5, 7, 4)).isSymmetric === false)
   }
 
+  // Problem 58
+  def testSymmetricBalancedTrees = { 
+    assert(Tree.symmetricBalancedTrees(5, "x") ===
+      List(Node("x", Node("x", End, Node("x")), Node("x", Node("x"), End)),
+	   Node("x", Node("x", Node("x"), End), Node("x", End, Node("x")))))
+  }
+
   def isBalanced[T](t: Tree[T]): Boolean = t match { 
     case Node(_, End, End) => true
     case Node(_, l, End) => nodeNum(l) == 1

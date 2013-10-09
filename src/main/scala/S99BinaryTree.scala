@@ -54,5 +54,9 @@ object S99BinaryTree {
     // Problem 57
     def fromList[T <% Ordered[T]](lst: List[T]): Tree[T] =
       lst.foldLeft(End: Tree[T])((t, e) => t.addValue(e))
+
+    // Problem 58
+    def symmetricBalancedTrees[T](n: Int, x: T) =
+      Tree.cBalanced(n, x).filter(_.isSymmetric)
   }
 }
